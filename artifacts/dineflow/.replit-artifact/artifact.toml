@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "DineFlow"
+version = "1.0.0"
+id = "artifacts/dineflow"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21807
+
+[services.development]
+run = "pnpm --filter @workspace/dineflow run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dineflow", "run", "build" ]
+publicDir = "artifacts/dineflow/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21807"
+BASE_PATH = "/"
