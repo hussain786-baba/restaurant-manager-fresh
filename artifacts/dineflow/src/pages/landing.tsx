@@ -11,6 +11,8 @@ export default function LandingPage() {
   const [code, setCode] = useState("");
   const tables = useListPublicTables();
 
+  const tableList = Array.isArray(tables.data) ? tables.data : [];
+
   function pickTable(c: string) {
     setTableCode(c);
     setLoc("/menu");
@@ -52,6 +54,7 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
+
           <form
             className="mt-4 flex gap-2"
             onSubmit={(e) => {
@@ -79,13 +82,14 @@ export default function LandingPage() {
             </div>
             <Sparkles size={14} className="text-gold" />
           </div>
+
           <div className="grid grid-cols-2 gap-2">
             {tables.isLoading ? (
               Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="skeleton h-[68px]" />
               ))
-            ) : (
-              tables.data?.map((t) => (
+            ) : tableList.length > 0 ? (
+              tableList.map((t) => (
                 <button
                   key={t.id}
                   type="button"
@@ -108,6 +112,10 @@ export default function LandingPage() {
                   </div>
                 </button>
               ))
+            ) : (
+              <div className="col-span-2 paper-card p-4 text-center text-sm text-ink-3">
+                No demo tables found. Enter table code manually, for example T01.
+              </div>
             )}
           </div>
         </div>
