@@ -805,7 +805,7 @@ export const usePayOrder = <
  * @summary Staff login (super_admin or manager)
  */
 export const getLoginUrl = () => {
-  return `/api/auth/login`;
+ return `https://restaurant-manager-api.onrender.com/api/auth/login`;
 };
 
 export const login = async (
@@ -891,7 +891,7 @@ export const useLogin = <
  * @summary End the current session
  */
 export const getLogoutUrl = () => {
-  return `/api/auth/logout`;
+  return `https://restaurant-manager-api.onrender.com/api/auth/logout`;
 };
 
 export const logout = async (options?: RequestInit): Promise<Ok> => {
@@ -970,7 +970,7 @@ export const useLogout = <
  * @summary Currently logged-in staff user
  */
 export const getGetMeUrl = () => {
-  return `/api/auth/me`;
+ return `https://restaurant-manager-api.onrender.com/api/auth/me`;
 };
 
 export const getMe = async (options?: RequestInit): Promise<MeResponse> => {
